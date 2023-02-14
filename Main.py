@@ -6,6 +6,8 @@ pygame.init()
 WIDTH, HEIGHT = 750, 500
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Space Invaders By Aashakt")
+icon = pygame.image.load("SpaceInvaderIcon.ico")
+pygame.display.set_icon(icon)
 
 RocketImg = pygame.image.load("C:\MyFolder\PythonProgramming\SpaceInvaders\Images\Rocket.png")
 RocketImg = pygame.transform.scale(RocketImg, (50, 50))

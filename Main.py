@@ -123,6 +123,30 @@ def Text(msg, pos):
     text = font.render(msg, True, (255, 255, 255))
     WIN.blit(text, pos)
 
+def MenuScreen():
+    run1 = True
+    Bcolor = (255,255,255)
+    while run1:
+        mouse = pygame.mouse.get_pos()
+        Text("Space Invaders", (270, 20))
+        pygame.draw.rect(WIN, Bcolor, [320, 220, 100, 50], 2, 10)
+        Text("Play", (340, 232))
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run1 = False
+                pygame.quit()
+                quit()
+        if 320 < mouse[0] < 420:
+            if 220 < mouse[1] < 270:
+                Bcolor = (195, 195, 195)
+                if pygame.mouse.get_pressed()[0]:
+                    run1 = False
+                    WIN.fill((0,0,0))
+                    Main() 
+            else:       
+                Bcolor = (255,255,255)            
+        pygame.display.update() 
+
 def Main():
     run = True
     clock = pygame.time.Clock()
@@ -188,6 +212,10 @@ def Main():
             run = False 
             WIN.fill((0, 0, 0))  
             GameOverScreen()
+        if Score >= 60:
+            run = False
+            WIN.fill((0,0,0))
+            GameWonScreen()    
         for o in ObstacleList:
             o.Update()  
         pygame.display.update()
@@ -202,6 +230,17 @@ def GameOverScreen():
                 run1 = False
                 pygame.quit()
                 quit()
+        pygame.display.update() 
+
+def GameWonScreen():
+    run2 = True
+    while run2:
+        Text("You Won", (320, 220))
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run2 = False
+                pygame.quit()
+                quit()
         pygame.display.update()
 
-Main()                        
+MenuScreen()   
